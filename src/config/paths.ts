@@ -4,9 +4,13 @@ export const paths = {
             path: '/',
             getHref: () => '/',
         },
-        timers: {
+        focus: {
             path: '/',
             getHref: () => '/',
+        },
+        garden: {
+            path: 'garden',
+            getHref: () => '/garden',
         }
     },
 } as const;

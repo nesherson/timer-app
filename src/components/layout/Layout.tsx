@@ -1,4 +1,4 @@
-import { Timer, PanelLeft, User2 } from 'lucide-react';
+import { PanelLeft, Leaf, ClockFading } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { NavLink, useNavigation } from 'react-router';
 
@@ -7,14 +7,6 @@ import { Button } from '@/components/ui/button';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 import { paths } from '@/config/paths';
 import { cn } from '@/utils/cn';
-
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from '../ui/dropdown';
 import { Link } from '../ui/link';
 
 type SideNavigationItem = {
@@ -25,9 +17,9 @@ type SideNavigationItem = {
 
 const Logo = () => {
     return (
-        <Link className="flex items-center text-white" to={paths.app.timers.getHref()}>
+        <Link className="flex items-center text-white" to={paths.app.focus.getHref()}>
             <img className="h-10 w-auto mr-4" src={logo} alt="Workflow" />
-            <span className="text-lg font-semibold text-white">
+            <span className="text-lg font-semibold text-blue-600">
                 Timer App
             </span>
         </Link>
@@ -76,12 +68,13 @@ const Progress = () => {
 
 export function Layout({ children }: { children: React.ReactNode }) {
     const navigation = [
-        { name: 'Timers', to: paths.app.timers.getHref(), icon: Timer },
+        { name: 'Focus', to: paths.app.focus.getHref(), icon: ClockFading },
+        { name: 'Garden', to: paths.app.garden.getHref(), icon: Leaf },
     ].filter(Boolean) as SideNavigationItem[];
 
     return (
         <div className="flex min-h-screen w-full flex-col bg-muted/40">
-            <aside className="fixed inset-y-0 left-0 z-10 hidden w-60 flex-col border-r bg-black sm:flex">
+            <aside className="fixed inset-y-0 left-0 z-10 hidden w-60 flex-col border-r bg-gray-50 border-r-gray-200 sm:flex">
                 <nav className="flex flex-col items-center gap-4 px-2 py-4">
                     <div className="flex h-16 w-full px-4">
                         <Logo />
@@ -93,15 +86,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
                             end={item.name !== 'Discussions'}
                             className={({ isActive }) =>
                                 cn(
-                                    'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                    'group flex flex-1 w-full items-center rounded-md p-2 text-base font-medium',
-                                    isActive && 'bg-gray-900 text-white',
+                                    'text-blue-900 hover:bg-blue-500 hover:text-white',
+                                    'group flex flex-1 w-full rounded-md items-center p-2 text-base font-medium',
+                                    isActive && 'bg-blue-100 text-blue-900',
                                 )
                             }
                         >
                             <item.icon
                                 className={cn(
-                                    'text-gray-400 group-hover:text-gray-300',
+                                    'text-blue-900 group-hover:text-white',
                                     'mr-4 size-6 shrink-0',
                                 )}
                                 aria-hidden="true"

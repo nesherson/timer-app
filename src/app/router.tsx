@@ -30,10 +30,16 @@ export const createAppRouter = (queryClient: QueryClient) =>
             ErrorBoundary: AppRootErrorBoundary,
             children: [
                 {
-                    index: true,
-                    path: paths.app.timers.path,
+                    path: paths.app.focus.path,
                     lazy: () =>
-                        import('./routes/app/timers').then(
+                        import('./routes/app/focus').then(
+                            convert(queryClient),
+                        ),
+                },
+                {
+                    path: paths.app.garden.path,
+                    lazy: () =>
+                        import('./routes/app/garden').then(
                             convert(queryClient),
                         ),
                 }
